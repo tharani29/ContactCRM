@@ -5,9 +5,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +25,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import javax.net.ssl.HttpsURLConnection;
 
 
@@ -30,11 +36,14 @@ public class PostData extends AppCompatActivity {
     TextView tvName;
     TextView tvEmail;
     TextView tvPhone;
-    CheckBox mCheckBox;
     Button button;
     String name;
     String email;
     String phone;
+    Spinner execSpinner;
+    Spinner customerTypeSpinner;
+    Spinner pCatogerySpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +53,71 @@ public class PostData extends AppCompatActivity {
         tvName = (EditText) findViewById(R.id.input_name);
         tvEmail = (EditText) findViewById(R.id.input_email);
         tvPhone= (EditText) findViewById(R.id.input_phone);
-        mCheckBox= ( CheckBox ) findViewById(R.id.input_checkBox);
-        button.setBackgroundColor(-7829368);
+        execSpinner = (Spinner) findViewById(R.id.exeName);
+        customerTypeSpinner = (Spinner) findViewById(R.id.custType);
+        pCatogerySpinner = (Spinner) findViewById(R.id.pCatogery);
 
-        mCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCheckBox.isChecked() ){
-                    button.setEnabled(true);
-                    button.setBackgroundColor(-16776961);
-                }
-                else {
-                    button.setEnabled(false);
-                    button.setBackgroundColor(-7829368);
-                }
-            }
-        });
+
+        // Spinner Drop down elements
+        List<String> execNames = new ArrayList<String>();
+        execNames.add("Basavaraj");
+        execNames.add("Jayanth");
+        execNames.add("Ravi");
+        execNames.add("Kumar");
+        execNames.add("Rajesh");
+        execNames.add("Hariprasad");
+        execNames.add("Somashekha");
+        execNames.add("Sudhakar");
+        execNames.add("Bhagya");
+        execNames.add("Vishnu Priya");
+
+        List<String> customerType = new ArrayList<String>();
+        customerType.add("Plumbers");
+        customerType.add("E mail");
+        customerType.add("Interior Designers ");
+        customerType.add("Walkin");
+        customerType.add("Phone");
+        customerType.add("Builders");
+        customerType.add("Marketing");
+        customerType.add("Architects");
+
+
+        List<String> pCatogery = new ArrayList<String>();
+        pCatogery.add("1 Plumbing items");
+        pCatogery.add("2 C.P. Faucets");
+        pCatogery.add("3 Sanitaryware");
+        pCatogery.add("4 Tube and Wellness");
+        pCatogery.add("5 Tiles and Stone cladding");
+        pCatogery.add("6 Wooden Floorings");
+        pCatogery.add("7 Shower Enclosures");
+        pCatogery.add("8 Bathroom Vanity");
+        pCatogery.add("9 Kitchen Sinks");
+        pCatogery.add("10 Water Heaters");
+        pCatogery.add("11 Glass Blocks & Bathroom Mirrors");
+        pCatogery.add("12 Pressure Pumps & Water softeners");
+        pCatogery.add("13 Bathroom Accessories");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> execuDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, execNames);
+        ArrayAdapter<String> custTypeDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, customerType);
+        ArrayAdapter<String> pCatogeryDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pCatogery);
+
+        // Drop down layout style - list view with radio button
+        execuDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        custTypeDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pCatogeryDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        execSpinner.setAdapter(execuDataAdapter);
+        customerTypeSpinner.setAdapter(custTypeDataAdapter);
+        pCatogerySpinner.setAdapter(pCatogeryDataAdapter);
+
+        System.out.println(  String.valueOf(execSpinner.getSelectedItem()));
+
+        System.out.println(  String.valueOf(customerTypeSpinner.getSelectedItem()));
+        System.out.println(  String.valueOf(pCatogerySpinner.getSelectedItem()));
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
