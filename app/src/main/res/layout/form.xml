@@ -3,47 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-     <LinearLayout
-         android:layout_width="fill_parent"
-         android:layout_height="match_parent"
-         android:layout_marginTop="?attr/actionBarSize"
-         android:orientation="vertical"
-         android:paddingLeft="20dp"
-         android:paddingRight="20dp">
-
-         <!-- Text Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:text="Executive name"
-            android:layout_marginBottom="5dp"
-            />
-
-        <!-- Spinner Element -->
-        <Spinner
-            android:id="@+id/exeName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spinner_title"
-            />
-
-        <!-- Text Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:text="Customer type"
-            android:layout_marginBottom="5dp"
-            />
-
-        <!-- Spinner Element -->
-        <Spinner
-            android:id="@+id/custType"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spinner_title"
-            />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_name"
@@ -54,10 +21,41 @@
                 android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:hint="CLIENT NAME*"
-                android:inputType="" />
+                android:hint="CUSTOMER NAME*"
+                android:inputType=""
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Text Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="5dp"
+            android:text="Executive name" />
+
+        <!-- Spinner Element -->
+        <Spinner
+            android:id="@+id/exeName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinner_title" />
+
+        <!-- Text Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="5dp"
+            android:text="Customer type" />
+
+        <!-- Spinner Element -->
+        <Spinner
+            android:id="@+id/custType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinner_title" />
+
 
 
 
@@ -66,17 +64,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:text="Product Catogery*"
             android:layout_marginBottom="5dp"
-            />
+            android:text="Product Catogery*" />
 
         <!-- Spinner Element -->
         <Spinner
             android:id="@+id/pCatogery"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/spinner_title"
-            />
+            android:prompt="@string/spinner_title" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_email"
@@ -88,86 +84,83 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:inputType="textEmailAddress"
-                />
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
-         <!--   <com.google.android.material.textfield.TextInputLayout
+        <!--   <com.google.android.material.textfield.TextInputLayout
               android:id="@+id/input_layout_phone"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"> -->
 
-              <EditText
-                  android:id="@+id/input_phone"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:hint="Phone number"
-                  android:inputType="phone"
-                  />
-              <EditText
-                  android:id="@+id/input_address"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:hint="Address"
-                  android:inputType="text"
-                  />
-         <!-- Text Label -->
-         <TextView
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="10dip"
-             android:text="Designation"
-             android:layout_marginBottom="5dp"
-             />
+        <EditText
+            android:id="@+id/input_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone number"
+            android:inputType="phone" />
 
-         <!-- Spinner Element -->
-         <Spinner
-             android:id="@+id/designation"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:prompt="@string/spinner_title"
-             />
-         <EditText
-             android:id="@+id/input_sOrder"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Sale Order Number"
-             android:inputType="text"
-             />
-         <EditText
-             android:id="@+id/input_brand"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Brand"
-             android:inputType="text"
-             />
-         <EditText
-             android:id="@+id/input_orderValue"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Order value"
-             android:inputType="text"
-             />
-         <EditText
-             android:id="@+id/input_nextAction"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Next Action"
-             android:inputType="text"
-             />
+        <EditText
+            android:id="@+id/input_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:inputType="text" />
+        <!-- Text Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="5dp"
+            android:text="Designation" />
+
+        <!-- Spinner Element -->
+        <Spinner
+            android:id="@+id/designation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinner_title" />
 
 
+        <EditText
+            android:id="@+id/input_sOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sale Order Number"
+            android:inputType="text" />
 
-         <!--   </com.google.android.material.textfield.TextInputLayout>-->
+        <EditText
+            android:id="@+id/input_brand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"
+            android:inputType="text" />
 
-           <Button android:id="@+id/btn_signup"
-               android:layout_width="fill_parent"
-               android:layout_height="wrap_content"
-               android:text="Submit"
-               android:background="@color/colorPrimary"
-               android:layout_marginTop="40dp"
-               android:textColor="@android:color/white"/>
+        <EditText
+            android:id="@+id/input_orderValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order value"
+            android:inputType="text" />
 
-       </LinearLayout>
+        <EditText
+            android:id="@+id/input_nextAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Next Action"
+            android:inputType="text" />
+
+
+        <!--   </com.google.android.material.textfield.TextInputLayout>-->
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorPrimary"
+            android:text="Submit"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
    </androidx.coordinatorlayout.widget.CoordinatorLayout>
