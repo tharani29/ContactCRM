@@ -36,13 +36,31 @@ public class PostData extends AppCompatActivity {
     TextView tvName;
     TextView tvEmail;
     TextView tvPhone;
+    TextView tvAddress;
+    TextView tvSaleOrder;
+    TextView tvBrand;
+    TextView tvOrderValue;
+    TextView tvNextAction;
+
     Button button;
     String name;
     String email;
     String phone;
+    String address;
+    String saleOrder;
+    String brand;
+    String orderValue;
+    String nextAction;
+
+    String eName;
+    String customerTypeValue;
+    String pCatogeryValue;
+    String designation;
+
     Spinner execSpinner;
     Spinner customerTypeSpinner;
     Spinner pCatogerySpinner;
+    Spinner designationSpinner;
 
 
     @Override
@@ -50,12 +68,21 @@ public class PostData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form);
         button = (Button) findViewById(R.id.btn_signup);
+
         tvName = (EditText) findViewById(R.id.input_name);
         tvEmail = (EditText) findViewById(R.id.input_email);
         tvPhone= (EditText) findViewById(R.id.input_phone);
+
+        tvAddress = (EditText) findViewById(R.id.input_address);
+        tvSaleOrder = (EditText) findViewById(R.id.input_sOrder);
+        tvBrand = (EditText) findViewById(R.id.input_brand);
+        tvOrderValue = (EditText) findViewById(R.id.input_orderValue);
+        tvNextAction = (EditText) findViewById(R.id.input_nextAction);
+
         execSpinner = (Spinner) findViewById(R.id.exeName);
         customerTypeSpinner = (Spinner) findViewById(R.id.custType);
         pCatogerySpinner = (Spinner) findViewById(R.id.pCatogery);
+        designationSpinner = (Spinner) findViewById(R.id.designation);
 
 
         // Spinner Drop down elements
@@ -97,27 +124,40 @@ public class PostData extends AppCompatActivity {
         pCatogery.add("12 Pressure Pumps & Water softeners");
         pCatogery.add("13 Bathroom Accessories");
 
+
+
+        List<String> designationlist = new ArrayList<String>();
+        designationlist.add("Senior associate");
+        designationlist.add("Purchase manager");
+        designationlist.add("Site supervisor");
+        designationlist.add("Contractor");
+        designationlist.add("Senior associate");
+        designationlist.add("Owner");
+
+
         // Creating adapter for spinner
         ArrayAdapter<String> execuDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, execNames);
         ArrayAdapter<String> custTypeDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, customerType);
         ArrayAdapter<String> pCatogeryDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pCatogery);
+        ArrayAdapter<String> pdesignationDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, designationlist);
 
         // Drop down layout style - list view with radio button
         execuDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         custTypeDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pCatogeryDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pdesignationDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 
         // attaching data adapter to spinner
         execSpinner.setAdapter(execuDataAdapter);
         customerTypeSpinner.setAdapter(custTypeDataAdapter);
         pCatogerySpinner.setAdapter(pCatogeryDataAdapter);
+        designationSpinner.setAdapter(pdesignationDataAdapter);
 
         System.out.println(  String.valueOf(execSpinner.getSelectedItem()));
-
+        System.out.println(  String.valueOf(designationSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(customerTypeSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(pCatogerySpinner.getSelectedItem()));
-
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +165,18 @@ public class PostData extends AppCompatActivity {
                 name = tvName.getText().toString();
                 email = tvEmail.getText().toString();
                 phone = tvPhone.getText().toString();
+
+                address = tvAddress.getText().toString();
+                saleOrder = tvSaleOrder.getText().toString();
+                brand = tvBrand.getText().toString();
+                orderValue = tvOrderValue.getText().toString();
+                nextAction = tvNextAction.getText().toString();
+
+                eName = String.valueOf(execSpinner.getSelectedItem());
+                designation = String.valueOf(designationSpinner.getSelectedItem());
+                customerTypeValue = String.valueOf(customerTypeSpinner.getSelectedItem());
+                pCatogeryValue = String.valueOf(pCatogerySpinner.getSelectedItem()) ;
+
                 new SendRequest().execute();
                 Intent intent = new Intent(getApplicationContext(), MainPage.class);
                 startActivity(intent);
@@ -151,6 +203,16 @@ public class PostData extends AppCompatActivity {
                 postDataParams.put("name", name);
                 postDataParams.put("email", email);
                 postDataParams.put("phone",phone);
+                postDataParams.put("address", address);
+                postDataParams.put("saleOrder", saleOrder);
+                postDataParams.put("brand", brand);
+                postDataParams.put("saleOrder", saleOrder);
+                postDataParams.put("nextAction",nextAction);
+                postDataParams.put("orderValue", orderValue);
+                postDataParams.put("eName", eName);
+                postDataParams.put("designation",designation);
+                postDataParams.put("customerTypeValue", customerTypeValue);
+                postDataParams.put("pCatogeryValue", pCatogeryValue);
 
 
                 Log.e("params", postDataParams.toString());
