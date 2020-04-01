@@ -1,5 +1,7 @@
 package com.tharani.Post;
 
+
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Calendar;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -38,11 +42,13 @@ public class PostData extends AppCompatActivity {
     TextView tvPhone;
     TextView tvAddress;
     TextView tvSaleOrder;
-    TextView tvBrand;
     TextView tvOrderValue;
     TextView tvNextAction;
+    TextView date;
+
 
     Button button;
+    Button selectDate;
     String name;
     String email;
     String phone;
@@ -56,11 +62,15 @@ public class PostData extends AppCompatActivity {
     String customerTypeValue;
     String pCatogeryValue;
     String designation;
+    String fdate;
+
 
     Spinner execSpinner;
     Spinner customerTypeSpinner;
     Spinner pCatogerySpinner;
     Spinner designationSpinner;
+    Spinner BrandSpinner;
+
 
 
     @Override
@@ -69,13 +79,14 @@ public class PostData extends AppCompatActivity {
         setContentView(R.layout.form);
         button = (Button) findViewById(R.id.btn_signup);
 
+
         tvName = (EditText) findViewById(R.id.input_name);
         tvEmail = (EditText) findViewById(R.id.input_email);
         tvPhone= (EditText) findViewById(R.id.input_phone);
 
         tvAddress = (EditText) findViewById(R.id.input_address);
         tvSaleOrder = (EditText) findViewById(R.id.input_sOrder);
-        tvBrand = (EditText) findViewById(R.id.input_brand);
+       // tvBrand = (EditText) findViewById(R.id.pBrand);
         tvOrderValue = (EditText) findViewById(R.id.input_orderValue);
         tvNextAction = (EditText) findViewById(R.id.input_nextAction);
 
@@ -83,10 +94,13 @@ public class PostData extends AppCompatActivity {
         customerTypeSpinner = (Spinner) findViewById(R.id.custType);
         pCatogerySpinner = (Spinner) findViewById(R.id.pCatogery);
         designationSpinner = (Spinner) findViewById(R.id.designation);
+        BrandSpinner = (Spinner) findViewById(R.id.pBrand);
+
 
 
         // Spinner Drop down elements
         List<String> execNames = new ArrayList<String>();
+        execNames.add("Executive Name");
         execNames.add("Basavaraj");
         execNames.add("Jayanth");
         execNames.add("Ravi");
@@ -99,6 +113,7 @@ public class PostData extends AppCompatActivity {
         execNames.add("Vishnu Priya");
 
         List<String> customerType = new ArrayList<String>();
+        customerType.add("Customer Type");
         customerType.add("Plumbers");
         customerType.add("E mail");
         customerType.add("Interior Designers ");
@@ -110,6 +125,7 @@ public class PostData extends AppCompatActivity {
 
 
         List<String> pCatogery = new ArrayList<String>();
+        pCatogery.add("Category");
         pCatogery.add("1 Plumbing items");
         pCatogery.add("2 C.P. Faucets");
         pCatogery.add("3 Sanitaryware");
@@ -127,6 +143,7 @@ public class PostData extends AppCompatActivity {
 
 
         List<String> designationlist = new ArrayList<String>();
+        designationlist.add("Designation List");
         designationlist.add("Senior associate");
         designationlist.add("Purchase manager");
         designationlist.add("Site supervisor");
@@ -134,18 +151,57 @@ public class PostData extends AppCompatActivity {
         designationlist.add("Senior associate");
         designationlist.add("Owner");
 
+        List<String> pBrandlist = new ArrayList<String>();
+        pBrandlist.add("Brand List");
+        pBrandlist.add("Aashirwaad, Supreme");
+        pBrandlist.add("Viega");
+        pBrandlist.add("Geberit");
+        pBrandlist.add("Viking");
+        pBrandlist.add("Watertec");
+        pBrandlist.add("Palladio");
+        pBrandlist.add("Piccolo");
+        pBrandlist.add("Inax");
+        pBrandlist.add("RAK");
+        pBrandlist.add("Johnson");
+        pBrandlist.add("Nitco");
+        pBrandlist.add("Nexion");
+        pBrandlist.add("Somany");
+        pBrandlist.add("Orient Bell");
+        pBrandlist.add("Simpolo");
+        pBrandlist.add("Xylos");
+        pBrandlist.add("Grohe");
+        pBrandlist.add("Jaquar");
+        pBrandlist.add("Hindware");
+        pBrandlist.add("Alchymi,");
+        pBrandlist.add("Glocera");
+        pBrandlist.add("Hansgrohe");
+        pBrandlist.add("Oyster");
+        pBrandlist.add("Toto");
+        pBrandlist.add("Nirali,");
+        pBrandlist.add("Franke");
+        pBrandlist.add("3M");
+        pBrandlist.add("Zero B");
+        pBrandlist.add("Carysil");
+        pBrandlist.add("Grundfos");
+        pBrandlist.add("Kajaria");
+        pBrandlist.add("Gujarat Tiles");
+
+
+
 
         // Creating adapter for spinner
         ArrayAdapter<String> execuDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, execNames);
         ArrayAdapter<String> custTypeDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, customerType);
         ArrayAdapter<String> pCatogeryDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pCatogery);
         ArrayAdapter<String> pdesignationDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, designationlist);
+        ArrayAdapter<String> pBrandlistDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pBrandlist);
 
         // Drop down layout style - list view with radio button
         execuDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         custTypeDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pCatogeryDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pdesignationDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pBrandlistDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
         // attaching data adapter to spinner
@@ -153,11 +209,35 @@ public class PostData extends AppCompatActivity {
         customerTypeSpinner.setAdapter(custTypeDataAdapter);
         pCatogerySpinner.setAdapter(pCatogeryDataAdapter);
         designationSpinner.setAdapter(pdesignationDataAdapter);
+        BrandSpinner.setAdapter(pBrandlistDataAdapter);
 
         System.out.println(  String.valueOf(execSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(designationSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(customerTypeSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(pCatogerySpinner.getSelectedItem()));
+        System.out.println(  String.valueOf(BrandSpinner.getSelectedItem()));
+
+
+       selectDate = findViewById(R.id.btnDate);
+       date = findViewById(R.id.tvSelectedDate);
+
+       selectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(PostData.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                date.setText(day + "-" + (month + 1) + "-" + year);
+                            }
+                        }, year, month, dayOfMonth);
+                datePickerDialog.show();
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,15 +248,15 @@ public class PostData extends AppCompatActivity {
 
                 address = tvAddress.getText().toString();
                 saleOrder = tvSaleOrder.getText().toString();
-                brand = tvBrand.getText().toString();
                 orderValue = tvOrderValue.getText().toString();
                 nextAction = tvNextAction.getText().toString();
 
                 eName = String.valueOf(execSpinner.getSelectedItem());
                 designation = String.valueOf(designationSpinner.getSelectedItem());
                 customerTypeValue = String.valueOf(customerTypeSpinner.getSelectedItem());
-                pCatogeryValue = String.valueOf(pCatogerySpinner.getSelectedItem()) ;
-
+                pCatogeryValue = String.valueOf(pCatogerySpinner.getSelectedItem());
+                brand = String.valueOf(BrandSpinner.getSelectedItem());
+                fdate=date.getText().toString();
                 new SendRequest().execute();
                 Intent intent = new Intent(getApplicationContext(), MainPage.class);
                 startActivity(intent);
@@ -213,6 +293,7 @@ public class PostData extends AppCompatActivity {
                 postDataParams.put("designation",designation);
                 postDataParams.put("customerTypeValue", customerTypeValue);
                 postDataParams.put("pCatogeryValue", pCatogeryValue);
+                postDataParams.put("fdate", fdate);
 
 
                 Log.e("params", postDataParams.toString());
