@@ -42,14 +42,13 @@ public class PostData extends AppCompatActivity {
     TextView tvPhone;
     TextView tvAddress;
     TextView tvSaleOrder;
-    TextView tvBrand;
     TextView tvOrderValue;
     TextView tvNextAction;
-
-
+    TextView date;
 
 
     Button button;
+    Button selectDate;
     String name;
     String email;
     String phone;
@@ -63,6 +62,7 @@ public class PostData extends AppCompatActivity {
     String customerTypeValue;
     String pCatogeryValue;
     String designation;
+    String fdate;
 
 
     Spinner execSpinner;
@@ -78,6 +78,7 @@ public class PostData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form);
         button = (Button) findViewById(R.id.btn_signup);
+
 
         tvName = (EditText) findViewById(R.id.input_name);
         tvEmail = (EditText) findViewById(R.id.input_email);
@@ -217,48 +218,26 @@ public class PostData extends AppCompatActivity {
         System.out.println(  String.valueOf(BrandSpinner.getSelectedItem()));
 
 
+       selectDate = findViewById(R.id.btnDate);
+       date = findViewById(R.id.tvSelectedDate);
 
-
-
-
-       Button selectDate;
-        TextView date;
-
-
-
-
-
-        selectDate = findViewById(R.id.btnDate);
-        date = findViewById(R.id.tvSelectedDate);
-
-        /*selectDate.setOnClickListener(new View.OnClickListener() {
+       selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getApplicationContext(),
+                DatePickerDialog datePickerDialog = new DatePickerDialog(PostData.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                date.setText(day + "/" + (month + 1) + "/" + year);
+                                date.setText(day + "-" + (month + 1) + "-" + year);
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.show();
             }
-        }); */
-
-
-
-
-
-
-
-
-
-
-
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,7 +248,6 @@ public class PostData extends AppCompatActivity {
 
                 address = tvAddress.getText().toString();
                 saleOrder = tvSaleOrder.getText().toString();
-               // brand = tvBrand.getText().toString();
                 orderValue = tvOrderValue.getText().toString();
                 nextAction = tvNextAction.getText().toString();
 
@@ -278,6 +256,7 @@ public class PostData extends AppCompatActivity {
                 customerTypeValue = String.valueOf(customerTypeSpinner.getSelectedItem());
                 pCatogeryValue = String.valueOf(pCatogerySpinner.getSelectedItem());
                 brand = String.valueOf(BrandSpinner.getSelectedItem());
+                fdate=date.getText().toString();
                 new SendRequest().execute();
                 Intent intent = new Intent(getApplicationContext(), MainPage.class);
                 startActivity(intent);
@@ -314,6 +293,7 @@ public class PostData extends AppCompatActivity {
                 postDataParams.put("designation",designation);
                 postDataParams.put("customerTypeValue", customerTypeValue);
                 postDataParams.put("pCatogeryValue", pCatogeryValue);
+                postDataParams.put("fdate", fdate);
 
 
                 Log.e("params", postDataParams.toString());

@@ -30,15 +30,7 @@
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Text Label -->
-            <!--TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="5dp"
-                android:text="Executive name" /-->
-
-            <!-- Spinner Element -->
+           <!-- Spinner Element -->
             <Spinner
                 android:id="@+id/exeName"
                 android:layout_width="fill_parent"
@@ -46,14 +38,6 @@
                 android:layout_marginTop="10dip"
                 android:layout_marginBottom="5dp"
                 android:prompt="@string/spinner_title" />
-
-            <!-- Text Label -->
-            <!--TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="5dp"
-                android:text="Customer type" /-->
 
             <!-- Spinner Element -->
             <Spinner
@@ -63,15 +47,6 @@
                 android:layout_marginTop="10dip"
                 android:layout_marginBottom="5dp"
                 android:prompt="@string/spinner_title" />
-
-
-            <!-- Text Label -->
-            <!--TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="5dp"
-                android:text="Product Catogery*" /-->
 
             <!-- Spinner Element -->
             <Spinner
@@ -95,11 +70,6 @@
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--   <com.google.android.material.textfield.TextInputLayout
-              android:id="@+id/input_layout_phone"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"> -->
-
             <EditText
                 android:id="@+id/input_phone"
                 android:layout_width="match_parent"
@@ -113,13 +83,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Address"
                 android:inputType="text" />
-            <!-- Text Label -->
-            <!--TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="5dp"
-                android:text="Designation" /-->
 
             <!-- Spinner Element -->
             <Spinner
@@ -136,14 +99,7 @@
                 android:hint="Sale Order Number"
                 android:inputType="text" />
 
-            <!--TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="5dp"
-                android:text="Brand" /-->
 
-            <!-- Spinner Element -->
             <Spinner
                 android:id="@+id/pBrand"
                 android:layout_width="fill_parent"
@@ -165,21 +121,16 @@
                 android:id="@+id/input_nextAction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Next Action"
+                android:hint="Next Action Plan"
                 android:inputType="text" />
-            <!--EditText
-                android:id="@+id/f__date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Follow up Date"
-                android:inputType="Date" /-->
+
             <Button
                 android:id="@+id/btnDate"
                 android:layout_width="371dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@color/colorAccent"
+                android:background="@color/Teal"
                 android:padding="10dp"
                 android:text="Follow up date"
                 android:textColor="@android:color/white" />
@@ -193,34 +144,17 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/Teal"
                 android:textSize="30sp"
                 android:textStyle="italic|bold" />
 
-            <!--DatePicker
-                android:id="@+id/simpleDatePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#150"
-                android:datePickerMode="spinner" />
-
-            <Button
-                android:id="@+id/submitButton"
-                android:layout_width="371dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:background="@color/colorAccent"
-                android:padding="10dp"
-                android:text="Follow up date"
-                android:textColor="@android:color/white" /-->
 
             <Button
                 android:id="@+id/btn_signup"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="100dp"
-                android:background="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/Teal"
                 android:text="Submit"
                 android:textColor="@android:color/white" />
         </LinearLayout>
