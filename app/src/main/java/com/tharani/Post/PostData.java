@@ -65,7 +65,6 @@ public class PostData extends AppCompatActivity {
     String fdate;
 
 
-    Spinner execSpinner;
     Spinner customerTypeSpinner;
     Spinner pCatogerySpinner;
     Spinner designationSpinner;
@@ -90,27 +89,12 @@ public class PostData extends AppCompatActivity {
         tvOrderValue = (EditText) findViewById(R.id.input_orderValue);
         tvNextAction = (EditText) findViewById(R.id.input_nextAction);
 
-        execSpinner = (Spinner) findViewById(R.id.exeName);
         customerTypeSpinner = (Spinner) findViewById(R.id.custType);
         pCatogerySpinner = (Spinner) findViewById(R.id.pCatogery);
         designationSpinner = (Spinner) findViewById(R.id.designation);
         BrandSpinner = (Spinner) findViewById(R.id.pBrand);
 
 
-
-        // Spinner Drop down elements
-        List<String> execNames = new ArrayList<String>();
-        execNames.add("Executive Name");
-        execNames.add("Basavaraj");
-        execNames.add("Jayanth");
-        execNames.add("Ravi");
-        execNames.add("Kumar");
-        execNames.add("Rajesh");
-        execNames.add("Hariprasad");
-        execNames.add("Somashekha");
-        execNames.add("Sudhakar");
-        execNames.add("Bhagya");
-        execNames.add("Vishnu Priya");
 
         List<String> customerType = new ArrayList<String>();
         customerType.add("Customer Type");
@@ -190,14 +174,12 @@ public class PostData extends AppCompatActivity {
 
 
         // Creating adapter for spinner
-        ArrayAdapter<String> execuDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, execNames);
         ArrayAdapter<String> custTypeDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, customerType);
         ArrayAdapter<String> pCatogeryDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pCatogery);
         ArrayAdapter<String> pdesignationDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, designationlist);
         ArrayAdapter<String> pBrandlistDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pBrandlist);
 
         // Drop down layout style - list view with radio button
-        execuDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         custTypeDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pCatogeryDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pdesignationDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -205,13 +187,11 @@ public class PostData extends AppCompatActivity {
 
 
         // attaching data adapter to spinner
-        execSpinner.setAdapter(execuDataAdapter);
         customerTypeSpinner.setAdapter(custTypeDataAdapter);
         pCatogerySpinner.setAdapter(pCatogeryDataAdapter);
         designationSpinner.setAdapter(pdesignationDataAdapter);
         BrandSpinner.setAdapter(pBrandlistDataAdapter);
 
-        System.out.println(  String.valueOf(execSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(designationSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(customerTypeSpinner.getSelectedItem()));
         System.out.println(  String.valueOf(pCatogerySpinner.getSelectedItem()));
@@ -251,7 +231,6 @@ public class PostData extends AppCompatActivity {
                 orderValue = tvOrderValue.getText().toString();
                 nextAction = tvNextAction.getText().toString();
 
-                eName = String.valueOf(execSpinner.getSelectedItem());
                 designation = String.valueOf(designationSpinner.getSelectedItem());
                 customerTypeValue = String.valueOf(customerTypeSpinner.getSelectedItem());
                 pCatogeryValue = String.valueOf(pCatogerySpinner.getSelectedItem());
@@ -273,8 +252,41 @@ public class PostData extends AppCompatActivity {
         protected String doInBackground(String... arg0) {
 
             try {
-                //Change your web app deployed URL or u can use this for attributes (name, country)
-                URL url = new URL("https://script.google.com/macros/s/AKfycbz7tQw1SI_JTr3B8i12cDw7dsnSqQNxkBbghl2Hec2lpoqV4hmJ/exec");
+                /* bhasavaraj https://script.google.com/macros/s/AKfycbwPHVeFEh_ERQ6SmDKqLKRZj5e1zPhxjsuPNkn6xp5xUVwIjssh/exec
+                 * bhagya  https://script.google.com/macros/s/AKfycbwFU4E2maBZrKJEKVz5smeU7TUKmdLOUyin_9hmOG7cF10C6oo/exec
+                 * vishnu priya https://script.google.com/macros/s/AKfycbwb6XHa8UstHaX1IT5HtQIVDEP2PYhdtz70YXfGK2_66Ux7XCXn/exec
+                 * Bhargavi https://script.google.com/macros/s/AKfycbymG9bSYogjhppS360fXpwK-3KOi39x_PnLLfW84gNDstTalU4/exec
+                 * deepak  https://script.google.com/macros/s/AKfycbywx54z2eEOG6zzT_VjgRZ4SoxRwtLMJNltuZPUmxLqgD8nIZcc/exec
+                 * Francy https://script.google.com/macros/s/AKfycbz8JrmmXh_p9cKQ0mCGcO6XV2bTop30McoX29stqZT3yXhVrHs/exec
+                 * Hari prasad https://script.google.com/macros/s/AKfycbyFbO63k-O-5T02IetrT9brigA13bG3UOM6d6yL6mhnMhpqpFas/exec
+                 * Jayanth https://script.google.com/macros/s/AKfycbxBckSmey6i7GICxoIAXL3ZPq36SZBTopb4Ac3IBvFsaeI_crbO/exec
+                 * Kumar https://script.google.com/macros/s/AKfycbysMiffqUhLf-fGBxvDh8bmlkxqXCQ2dftZKrqPsszxV1Rp9rA/exec
+                 * Neeta https://script.google.com/macros/s/AKfycbys6fChCYVMm-xiW5rWj7hVYMfvIS9weWRHzZfixKZybmiJ8f07/exec
+                 * pradhan https://script.google.com/macros/s/AKfycbwmM7VPkP3j-8DGyosL68NqqZIYsNdCJGBJL-9f22NAx3dtUwbY/exec
+                 * Raghu https://script.google.com/macros/s/AKfycbwO0NdbwZxBUy3IOC019drSWvTMw379QYwQ3jAa6r_1VqUDocpx/exec
+                 * Rajendra https://script.google.com/macros/s/AKfycbwzSxX6TfYXX-agdmgIaqsQMOa76Bk0nKyg-3hTrfWNJx0XBQg/exec
+                 * Rajesh https://script.google.com/macros/s/AKfycbya5fkALZcl5RAghI0dybVS1i1sh8wp-CFlsYy31gXnOwEX_qgi/exec
+                 * Ravi  https://script.google.com/macros/s/AKfycbyG4QxxkWYHURO7jYrluoDuFkK1W8TvgxfBVGMR_XD4CMCz3FRV/exec
+                 * Santhosh https://script.google.com/macros/s/AKfycbxlyrw_jmwvM_4g8nkQFh6gBbvo1mL_mOWnjW4tuzU3Od8OjMc/exec
+                 * Somashekar  https://script.google.com/macros/s/AKfycbwCNO90xL9YioKKVBqPrqdsFRoEF0pIdOPN5P2wLthvHsTS6CIX/exec
+                 * Subhash https://script.google.com/macros/s/AKfycbxd_R-EGl_BffllsiU8l3An9RwJdgb0SmDQCIkDSnqciv9wsr0/exec
+                 * Sudhakar https://script.google.com/macros/s/AKfycbzbWWMffEygjjqBtRs9ba8VV6wapyLH8_qruIQGCINCp9C0eRU/exec
+                 * Swapna https://script.google.com/macros/s/AKfycbzg0QyRA652KYLUVFrmzHwE5rPufUyaSSzd_-PPyRYbDmflTDY/exec
+                 * Thejas https://script.google.com/macros/s/AKfycbx4ILEus_uM1NYJB4XHCpF6Q5q5Boctl1hR7CAc1xTIp0ApiHU/exec
+                 * Mamtha https://script.google.com/macros/s/AKfycbyVR6gWKeiLHDkWJqzGgbexfDPV-23JzFpYbdKzPZ_PyOEBSR4/exec
+                 * Karthik https://script.google.com/macros/s/AKfycbw_-3p1CzHG0Ti_OWG8flja-OpyAFrQXmIx16Bc4h3y7c62wWI/exec
+                 * Sunil https://script.google.com/macros/s/AKfycbzBadHq0_pNJNmocZO-VqStJ0asfNMqvUl2JnIzeEWCk-mxBxo/exec
+                 *
+                 *
+                 */
+
+
+
+
+
+
+
+                URL url = new URL("https://script.google.com/macros/s/AKfycbzBadHq0_pNJNmocZO-VqStJ0asfNMqvUl2JnIzeEWCk-mxBxo/exec");
 
                 JSONObject postDataParams = new JSONObject();
                 String id = "Items";
@@ -289,7 +301,7 @@ public class PostData extends AppCompatActivity {
                 postDataParams.put("saleOrder", saleOrder);
                 postDataParams.put("nextAction",nextAction);
                 postDataParams.put("orderValue", orderValue);
-                postDataParams.put("eName", eName);
+                postDataParams.put("eName", "");
                 postDataParams.put("designation",designation);
                 postDataParams.put("customerTypeValue", customerTypeValue);
                 postDataParams.put("pCatogeryValue", pCatogeryValue);
