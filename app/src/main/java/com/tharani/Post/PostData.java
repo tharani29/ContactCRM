@@ -286,7 +286,7 @@ public class PostData extends AppCompatActivity {
 
 
 
-                URL url = new URL("https://script.google.com/macros/s/AKfycbzBadHq0_pNJNmocZO-VqStJ0asfNMqvUl2JnIzeEWCk-mxBxo/exec");
+                URL url = new URL("https://script.google.com/macros/s/AKfycbw_-3p1CzHG0Ti_OWG8flja-OpyAFrQXmIx16Bc4h3y7c62wWI/exec");
 
                 JSONObject postDataParams = new JSONObject();
                 String id = "Items";
